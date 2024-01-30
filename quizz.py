@@ -1,32 +1,52 @@
 import random
+import time
+import sys
+
+def check_time(start_time, time_limit, langage, reponses_correctes):
+    elapsed_time = time.time() - start_time
+
+    if elapsed_time >= time_limit:
+        if langage == "fr":
+            print(f"Temps écoulé. La réponse correcte est {reponses_correctes[0]}.\n")
+        elif langage == "en":
+            print(f"Time's up. The correct answer is {reponses_correctes[0]}.\n")
+        elif langage == "es":
+            print(f"Se acabó el tiempo. La respuesta correcta es {reponses_correctes[0]}.\n")
 
 def poser_question(question, reponses_correctes, reponse_utilisateur, langage):
     print(question)
     for i, reponse in enumerate(reponses_correctes, start=1):
         print(f"{i}. {reponse}")
+    
+    start_time = time.time()
+    time_limit = 15
 
     try:
-        if langage == "fr":
-            reponse_utilisateur = int(input("Votre réponse (entrez le numéro correspondant) : "))
-            if 1 <= reponse_utilisateur <= len(reponses_correctes):
-                return reponses_correctes[reponse_utilisateur - 1]
-            else:
-                print("Veuillez entrer un numéro valide.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
-        elif langage == "en":
-            reponse_utilisateur = int(input("Your answer (enter the corresponding number): "))
-            if 1 <= reponse_utilisateur <= len(reponses_correctes):
-                return reponses_correctes[reponse_utilisateur - 1]
-            else:
-                print("Please enter a valid number.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
-        elif langage == "es":
-            reponse_utilisateur = int(input("Su respuesta (ingrese el número correspondiente): "))
-            if 1 <= reponse_utilisateur <= len(reponses_correctes):
-                return reponses_correctes[reponse_utilisateur - 1]
-            else:
-                print("Por favor ingrese un número válido.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
+        while True:
+            if langage == "fr":
+                reponse_utilisateur = int(input("Votre réponse (entrez le numéro correspondant, vous avez 15s) : "))
+                if 1 <= reponse_utilisateur <= len(reponses_correctes):
+                    check_time(start_time, time_limit, langage, reponses_correctes)
+                    return reponses_correctes[reponse_utilisateur - 1]
+                else:
+                    print("Veuillez entrer un numéro valide.")
+                    return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
+            elif langage == "en":
+                reponse_utilisateur = int(input("Your answer (enter the corresponding number, you have 15s): "))
+                if 1 <= reponse_utilisateur <= len(reponses_correctes):
+                    check_time(start_time, time_limit, langage, reponses_correctes)
+                    return reponses_correctes[reponse_utilisateur - 1]
+                else:
+                    print("Please enter a valid number.")
+                    return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
+            elif langage == "es":
+                reponse_utilisateur = int(input("Su respuesta (ingrese el número correspondiente, tienes 15s): "))
+                if 1 <= reponse_utilisateur <= len(reponses_correctes):
+                    check_time(start_time, time_limit, langage, reponses_correctes)
+                    return reponses_correctes[reponse_utilisateur - 1]
+                else:
+                    print("Por favor ingrese un número válido.")
+                    return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
     except ValueError:
         if langage == "fr":
             print("Veuillez entrer un numéro valide.")
