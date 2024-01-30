@@ -77,65 +77,109 @@ def choisir_langue():
         print("Veuillez entrer un numéro valide.")
         return choisir_langue()
 
+def choose_category():
+    print("Choisissez une catégorie :")
+    print("1. General knowledge")
+    print("2. Geography")
+
+    try:
+        category_choice = int(input("Votre choix (entrez le numéro correspondant) : "))
+        if category_choice == 1:
+            return "General knowledge", 0
+        elif category_choice == 2:
+            return "Geography", 1
+        else:
+            print("Veuillez entrer un numéro valide.")
+            return choose_category()
+    except ValueError:
+        print("Veuillez entrer un numéro valide.")
+        return choose_category()
+
 def jouer_quiz():
     langage = choisir_langue()
+    category, category_number = choose_category()
 
     questions = {
         "fr": [
             {
-                "question": "Quelle est la capitale de la France?",
-                "reponses": ["Paris", "Londres", "Berlin", "Madrid"],
-                "reponse_correcte": "Paris"
+                "General knowledge": [
+                    {
+                        "question": "Quelle est la capitale de la France?",
+                        "reponses": ["Paris", "Londres", "Berlin", "Madrid"],
+                        "reponse_correcte": "Paris"
+                    }
+                ],
             },
             {
-                "question": "Quel est le plus grand océan du monde?",
-                "reponses": ["Atlantique", "Indien", "Pacifique", "Arctique"],
-                "reponse_correcte": "Pacifique"
-            },
-            {
-                "question": "Combien de continents y a-t-il sur Terre?",
-                "reponses": ["5", "6", "7", "8"],
-                "reponse_correcte": "7"
+                "Geography": [
+                    {
+                        "question": "Quel est le plus grand océan du monde?",
+                        "reponses": ["Atlantique", "Indien", "Pacifique", "Arctique"],
+                        "reponse_correcte": "Pacifique"
+                    },
+                    {
+                        "question": "Combien de continents y a-t-il sur Terre?",
+                        "reponses": ["5", "6", "7", "8"],
+                        "reponse_correcte": "7"
+                    }
+                ],
             }
         ],
         "en": [
             {
-                "question": "What is the capital of France?",
-                "reponses": ["Paris", "London", "Berlin", "Madrid"],
-                "reponse_correcte": "Paris"
+                "General knowledge": [
+                    {
+                        "question": "What is the capital of France?",
+                        "reponses": ["Paris", "London", "Berlin", "Madrid"],
+                        "reponse_correcte": "Paris"
+                    }
+                ],
             },
             {
-                "question": "What is the largest ocean in the world?",
-                "reponses": ["Atlantic", "Indian", "Pacific", "Arctic"],
-                "reponse_correcte": "Pacific"
-            },
-            {
-                "question": "How many continents are there on Earth?",
-                "reponses": ["5", "6", "7", "8"],
-                "reponse_correcte": "7"
+                "Geography": [
+                    {
+                        "question": "What is the largest ocean in the world?",
+                        "reponses": ["Atlantic", "Indian", "Pacific", "Arctic"],
+                        "reponse_correcte": "Pacific"
+                    },
+                    {
+                        "question": "How many continents are there on Earth?",
+                        "reponses": ["5", "6", "7", "8"],
+                        "reponse_correcte": "7"
+                    }
+                ],
             }
         ],
         "es": [
             {
-                "question": "¿Cuál es la capital de Francia?",
-                "reponses": ["París", "Londres", "Berlín", "Madrid"],
-                "reponse_correcte": "París"
+                "General knowledge": [
+                    {
+                        "question": "¿Cuál es la capital de Francia?",
+                        "reponses": ["París", "Londres", "Berlín", "Madrid"],
+                        "reponse_correcte": "París"
+                    }
+                ],
             },
             {
-                "question": "¿Cuál es el océano más grande del mundo?",
-                "reponses": ["Atlántico", "Indio", "Pacífico", "Ártico"],
-                "reponse_correcte": "Pacífico"
-            },
-            {
-                "question": "¿Cuántos continentes hay en la Tierra?",
-                "reponses": ["5", "6", "7", "8"],
-                "reponse_correcte": "7"
+                "Geography": [
+                    {
+                        "question": "¿Cuál es el océano más grande del mundo?",
+                        "reponses": ["Atlántico", "Indio", "Pacífico", "Ártico"],
+                        "reponse_correcte": "Pacífico"
+                    },
+                    {
+                        "question": "¿Cuántos continentes hay en la Tierra?",
+                        "reponses": ["5", "6", "7", "8"],
+                        "reponse_correcte": "7"
+                    }
+                ],
             }
         ],
     }
 
     # convert the dictionary to a list of tuples
-    questions_list = list(questions[langage])
+    questions_list = list(questions[langage][category_number].items())[0][1]
+    print(questions_list)
     random.shuffle(questions_list)
 
     score = 0
@@ -161,11 +205,11 @@ def jouer_quiz():
                 print(f"Respuesta incorrecta. La respuesta correcta es {q['reponse_correcte']}.\n")
 
     if langage == "fr":
-        print(f"Votre score final est de {score}/{len(questions)}.\n")
+        print(f"Votre score final est de {score}.\n")
     elif langage == "en":
-        print(f"Your final score is {score}/{len(questions)}.\n")
+        print(f"Your final score is {score}.\n")
     elif langage == "es":
-        print(f"Su puntaje final es de {score}/{len(questions)}.\n")
+        print(f"Su puntaje final es de {score}.\n")
 
 if __name__ == "__main__":
     jouer_quiz()
