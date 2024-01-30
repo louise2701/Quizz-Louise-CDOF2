@@ -114,9 +114,13 @@ def jouer_quiz():
         ],
     }
 
+    # convert the dictionary to a list of tuples
+    questions_list = list(questions[langage])
+    random.shuffle(questions_list)
+
     score = 0
 
-    for q in questions:
+    for q in questions_list:
         reponse_utilisateur = None
         reponse_correcte = poser_question(q["question"], q["reponses"], reponse_utilisateur, langage)
         
