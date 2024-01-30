@@ -12,21 +12,21 @@ def poser_question(question, reponses_correctes, reponse_utilisateur, langage):
                 return reponses_correctes[reponse_utilisateur - 1]
             else:
                 print("Veuillez entrer un numéro valide.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur)
+                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
         elif langage == "en":
             reponse_utilisateur = int(input("Your answer (enter the corresponding number): "))
             if 1 <= reponse_utilisateur <= len(reponses_correctes):
                 return reponses_correctes[reponse_utilisateur - 1]
             else:
                 print("Please enter a valid number.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur)
+                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
         elif langage == "es":
             reponse_utilisateur = int(input("Su respuesta (ingrese el número correspondiente): "))
             if 1 <= reponse_utilisateur <= len(reponses_correctes):
                 return reponses_correctes[reponse_utilisateur - 1]
             else:
                 print("Por favor ingrese un número válido.")
-                return poser_question(question, reponses_correctes, reponse_utilisateur)
+                return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
     except ValueError:
         if langage == "fr":
             print("Veuillez entrer un numéro valide.")
@@ -34,7 +34,7 @@ def poser_question(question, reponses_correctes, reponse_utilisateur, langage):
             print("Please enter a valid number.")
         elif langage == "es":
             print("Por favor ingrese un número válido.")
-        return poser_question(question, reponses_correctes, reponse_utilisateur)
+        return poser_question(question, reponses_correctes, reponse_utilisateur, langage)
 
 def choisir_langue():
     print("Choisissez votre langue :")
