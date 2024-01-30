@@ -36,7 +36,7 @@ def jouer_quiz():
        
     ]
 
-    random.shuffle(questions)  # Mélanger les questions
+    
 
     score = 0
 
