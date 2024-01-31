@@ -111,6 +111,15 @@ def jouer_quiz():
                 ],
             },
             {
+                "Sport knowledge": [
+                    {
+                        "question": "Quel est le pays avec le plus de coupe du monde?",
+                        "reponses": ["France", "Argentine", "Allemagne", "Brésil"],
+                        "reponse_correcte": "Brésil"
+                    }
+                ],
+            },
+            {
                 "Geography": [
                     {
                         "question": "Quel est le plus grand océan du monde?",
@@ -136,6 +145,15 @@ def jouer_quiz():
                 ],
             },
             {
+                "Sport knowledge": [
+                    {
+                        "question": "Which country have won the most number of world cup?",
+                        "reponses": ["France", "Argentine", "Germany", "Brazil"],
+                        "reponse_correcte": "Brazil"
+                    }
+                ],
+            },
+            {
                 "Geography": [
                     {
                         "question": "What is the largest ocean in the world?",
@@ -157,6 +175,15 @@ def jouer_quiz():
                         "question": "¿Cuál es la capital de Francia?",
                         "reponses": ["París", "Londres", "Berlín", "Madrid"],
                         "reponse_correcte": "París"
+                    }
+                ],
+            },
+            {
+                "Sport knowledge": [
+                    {
+                        "question": "Cuál es el país con más Copas del Mundo?",
+                        "reponses": ["Francia", "Argentine", "Alemania", "Brazil"],
+                        "reponse_correcte": "Brazil"
                     }
                 ],
             },
